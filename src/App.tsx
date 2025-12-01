@@ -1,77 +1,109 @@
-import './App.css'
+import "./App.css";
 
-function App() {
-
+export default function App() {
   return (
-    <div style={{
-      width: "100%",
-      minHeight: "100vh",
-      backgroundColor: "#0a0a0a",
-      color: "white",
-      padding: "40px 20px",
-      fontFamily: "Arial, sans-serif",
-      textAlign: "center"
-    }}>
-      
-      <h1 style={{ fontSize: "38px", fontWeight: "bold", marginBottom: "20px" }}>
-        🚀 K_21 Assist — IA para Ganhar Dinheiro Online
+    <div
+      style={{
+        width: "100%",
+        minHeight: "100vh",
+        backgroundColor: "#0a0a0a",
+        color: "white",
+        padding: "40px 20px",
+        fontFamily: "Arial, sans-serif",
+        textAlign: "center"
+      }}
+    >
+      {/* HEADER */}
+      <h1 style={{ fontSize: "32px", marginBottom: "10px" }}>
+        🚀 K_21 Assist – IA para Ganhar em Dólar / AI to Scale Your Business
       </h1>
-
-      <p style={{
-        fontSize: "20px",
-        maxWidth: "600px",
-        margin: "0 auto 30px",
-        opacity: 0.9
-      }}>
-        Plataformas automáticas, bots inteligentes e serviços digitais focados em gerar renda no piloto automático. Tudo integrado. Tudo simples. Tudo escalável.
+      <p style={{ fontSize: "18px", maxWidth: "700px", margin: "0 auto 40px" }}>
+        Inteligência artificial que vende, cria conteúdo e automatiza o seu
+        negócio 24h.  
+        AI that automates sales, content and support — built to grow your revenue.
       </p>
 
-      <a 
-        href="#servicos"
+      {/* CTA BUTTONS */}
+      <div style={{ marginBottom: "40px" }}>
+        <a
+          href="#start"
+          style={{
+            padding: "14px 30px",
+            backgroundColor: "#7c3aed",
+            borderRadius: "8px",
+            color: "white",
+            textDecoration: "none",
+            fontWeight: "bold",
+            marginRight: "10px"
+          }}
+        >
+          Start Free
+        </a>
+
+        <a
+          href="#features"
+          style={{
+            padding: "14px 30px",
+            backgroundColor: "#1f1f1f",
+            borderRadius: "8px",
+            color: "white",
+            textDecoration: "none",
+            fontWeight: "bold",
+            border: "1px solid #7c3aed"
+          }}
+        >
+          Ver Funcionalidades
+        </a>
+      </div>
+
+      {/* FEATURES SECTION */}
+      <h2 id="features" style={{ fontSize: "26px", marginBottom: "20px" }}>
+        ⚡ Tudo o que você precisa para lucrar / Everything you need to scale
+      </h2>
+
+      <ul
         style={{
-          display: "inline-block",
-          padding: "14px 30px",
-          background: "linear-gradient(90deg, #ff007f, #6b00ff)",
-          color: "white",
-          borderRadius: "10px",
-          fontSize: "18px",
-          textDecoration: "none",
-          fontWeight: "bold"
-        }}
-      >
-        Ver Produtos e Serviços
-      </a>
-
-      <section id="servicos" style={{ marginTop: "60px" }}>
-        <h2 style={{ fontSize: "30px", marginBottom: "30px" }}>
-          💼 Serviços e Soluções
-        </h2>
-
-        <div style={{
-          maxWidth: "600px",
+          listStyle: "none",
+          padding: 0,
+          maxWidth: "700px",
           margin: "0 auto",
           textAlign: "left",
-          background: "#111",
-          padding: "25px",
-          borderRadius: "12px",
-          border: "1px solid #333"
-        }}>
-          <ul style={{ lineHeight: "1.8", fontSize: "18px" }}>
-            <li>✔️ Criação de assistentes virtuais</li>
-            <li>✔️ Bots automáticos de atendimento</li>
-            <li>✔️ Automação de redes sociais</li>
-            <li>✔️ Ferramentas digitais para vendas</li>
-            <li>✔️ Integração de IA nos negócios</li>
-          </ul>
-        </div>
-      </section>
+          fontSize: "18px",
+          lineHeight: "1.6"
+        }}
+      >
+        <li>• IA que atende clientes automaticamente (24/7)</li>
+        <li>• AI that captures and qualifies leads for you</li>
+        <li>• Criação automática de posts, scripts e textos</li>
+        <li>• Automatic content, ads, emails and scripts generator</li>
+        <li>• Responde em qualquer idioma</li>
+        <li>• Multilingual support (English, PT, ES and more)</li>
+        <li>• Faz vendas, suporte e geração de conteúdo</li>
+        <li>• Full automation for sales + support + content</li>
+      </ul>
 
-      <p style={{ marginTop: "50px", opacity: 0.6, fontSize: "14px" }}>
-        © 2025 K_21 Assist — Powered by Inteligência Artificial
-      </p>
+      {/* FINAL CTA */}
+      <h2 style={{ marginTop: "60px", fontSize: "28px" }}>
+        Pronta para ganhar em dólar? / Ready to scale in USD?
+      </h2>
 
+      <a
+        id="start"
+        href="#"
+        style={{
+          padding: "16px 40px",
+          backgroundColor: "#7c3aed",
+          borderRadius: "10px",
+          color: "white",
+          textDecoration: "none",
+          fontSize: "20px",
+          fontWeight: "bold",
+          display: "inline-block",
+          marginTop: "20px"
+        }}
+      >
+        Começar Agora / Start Now
+      </a>
     </div>
-  )
-}
-
-export default App
+  );
+        }
