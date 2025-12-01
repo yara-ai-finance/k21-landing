@@ -1,178 +1,192 @@
 import "./App.css";
+import React, { useState } from "react";
+
+/**
+ * BEFORE YOU SAVE:
+ * - Replace WA_NUMBER with your WhatsApp number in international format (no +, e.g. 15551234567)
+ * - Replace STRIPE_CHECKOUT_URL with your Stripe checkout / product url when ready
+ */
+
+const WA_NUMBER = "YOUR_PHONE_NUMBER_HERE"; // example: 15551234567
+const STRIPE_CHECKOUT_URL = "https://buy.stripe.com/PLACEHOLDER"; // replace later
 
 export default function App() {
+  const [lang, setLang] = useState<"en" | "pt">("en");
+  const t = (en: string, pt: string) => (lang === "en" ? en : pt);
+
+  const waLink = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
+    lang === "en"
+      ? "Hi, I want to start with K_21 Assist. Tell me more."
+      : "Olá, quero começar com K_21 Assist. Quero mais informações."
+  )}`;
+
   return (
-    <div
-      style={{
-        width: "100%",
-        minHeight: "100vh",
-        backgroundColor: "#0a0a0a",
-        color: "white",
-        padding: "40px 20px",
-        fontFamily: "Arial, sans-serif",
-        textAlign: "center"
-      }}
-    >
-      <h1 style={{ fontSize: "32px", marginBottom: "10px" }}>
-        🚀 K_21 Assist – IA para Ganhar em Dólar / AI to Scale Your Business
-      </h1>
-      <p style={{ fontSize: "18px", maxWidth: "700px", margin: "0 auto 40px" }}>
-        Inteligência artificial que vende, cria conteúdo e automatiza o seu
-        negócio 24h.  
-        AI that automates sales, content and support — built to grow your revenue.
-      </p>
+    <div style={{ fontFamily: "Inter, Arial, sans-serif", background: "#0b1020", color: "#fff", minHeight: "100vh" }}>
+      {/* Header */}
+      <header style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "22px 20px", maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+          <div style={{ background: "linear-gradient(90deg,#ff007f,#6b00ff)", color: "#fff", padding: "10px 14px", borderRadius: 10, fontWeight: 800 }}>
+            K_21
+          </div>
+          <div style={{ fontWeight: 700, fontSize: 18 }}>K_21 Assist</div>
+        </div>
 
-      <div style={{ marginBottom: "40px" }}>
-        <a
-          href="#start"
-          style={{
-            padding: "14px 30px",
-            backgroundColor: "#7c3aed",
-            borderRadius: "8px",
-            color: "white",
-            textDecoration: "none",
-            fontWeight: "bold",
-            marginRight: "10px"
-          }}
-        >
-          Start Free
-        </a>
+        <nav style={{ display: "flex", gap: 12, alignItems: "center" }}>
+          <button
+            onClick={() => setLang(lang === "en" ? "pt" : "en")}
+            style={{
+              background: "transparent",
+              border: "1px solid rgba(255,255,255,0.08)",
+              color: "#fff",
+              padding: "8px 12px",
+              borderRadius: 8,
+              cursor: "pointer",
+              fontWeight: 700
+            }}
+          >
+            {lang === "en" ? "PT" : "EN"}
+          </button>
+          <a href="#start" style={{ textDecoration: "none", color: "#fff", fontWeight: 700 }}>
+            {t("Start Free", "Começar")}
+          </a>
+        </nav>
+      </header>
 
-        <a
-          href="#features"
-          style={{
-            padding: "14px 30px",
-            backgroundColor: "#1f1f1f",
-            borderRadius: "8px",
-            color: "white",
-            textDecoration: "none",
-            fontWeight: "bold",
-            border: "1px solid #7c3aed"
-          }}
-        >
-          Ver Funcionalidades
-        </a>
-      </div>
+      {/* Hero */}
+      <section style={{ maxWidth: 1100, margin: "28px auto", padding: "0 20px", textAlign: "center" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 20 }}>
+          <div style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.02), transparent)", padding: 28, borderRadius: 16, border: "1px solid rgba(255,255,255,0.04)" }}>
+            <h1 style={{ fontSize: 34, margin: 0, lineHeight: 1.05 }}>
+              {t("Transform Your Business with Intelligent AI Automation", "Transforme seu negócio com Automação IA")}
+            </h1>
 
-      <h2 id="features" style={{ fontSize: "26px", marginBottom: "20px" }}>
-        ⚡ Tudo o que você precisa para lucrar / Everything you need to scale
-      </h2>
+            <p style={{ marginTop: 14, fontSize: 18, color: "rgba(255,255,255,0.85)", maxWidth: 900, marginLeft: "auto", marginRight: "auto" }}>
+              {t(
+                "AI that captures leads, writes copy, automates support and sells 24/7. Start today — no code, instant deploy.",
+                "IA que captura leads, escreve textos, automatiza suporte e vende 24/7. Comece hoje — sem código, deploy instantâneo."
+              )}
+            </p>
 
-      <ul
-        style={{
-          listStyle: "none",
-          padding: 0,
-          maxWidth: "700px",
-          margin: "0 auto",
-          textAlign: "left",
-          fontSize: "18px",
-          lineHeight: "1.6"
-        }}
-      >
-        <li>• IA que atende clientes automaticamente (24/7)</li>
-        <li>• AI that captures and qualifies leads for you</li>
-        <li>• Criação automática de posts, scripts e textos</li>
-        <li>• Automatic content, ads, emails and scripts generator</li>
-        <li>• Responde em qualquer idioma</li>
-        <li>• Multilingual support (English, PT, ES and more)</li>
-        <li>• Faz vendas, suporte e geração de conteúdo</li>
-        <li>• Full automation for sales + support + content</li>
-      </ul>
+            <div style={{ marginTop: 20, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+              <a
+                id="start"
+                href={STRIPE_CHECKOUT_URL}
+                style={{
+                  background: "linear-gradient(90deg,#ff007f,#6b00ff)",
+                  padding: "14px 26px",
+                  borderRadius: 12,
+                  color: "#fff",
+                  fontWeight: 800,
+                  textDecoration: "none",
+                  boxShadow: "0 8px 30px rgba(107,0,255,0.16)"
+                }}
+              >
+                {t("Start Free", "Começar Grátis")}
+              </a>
 
-      <h2 style={{ marginTop: "60px", fontSize: "28px" }}>
-        Pronta para ganhar em dólar? / Ready to scale in USD?
-      </h2>
+              <a
+                href={waLink}
+                style={{
+                  background: "transparent",
+                  padding: "12px 20px",
+                  borderRadius: 12,
+                  color: "#fff",
+                  textDecoration: "none",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  fontWeight: 700
+                }}
+                rel="noreferrer"
+              >
+                {t("Talk to an Expert (WhatsApp)", "Falar com um Especialista (WhatsApp)")}
+              </a>
+            </div>
 
-      <a
-        id="start"
-        href="#"
-        style={{
-          padding: "16px 40px",
-          backgroundColor: "#7c3aed",
-          borderRadius: "10px",
-          color: "white",
-          textDecoration: "none",
-          fontSize: "20px",
-          fontWeight: "bold",
-          display: "inline-block",
-          marginTop: "20px"
-        }}
-      >
-        Começar Agora / Start Now
-      </a>
+            <div style={{ marginTop: 18, color: "rgba(255,255,255,0.65)", fontSize: 14 }}>
+              {t("No credit card required • Start in minutes", "Sem cartão • Comece em minutos")}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section style={{ maxWidth: 1100, margin: "18px auto", padding: "0 20px" }}>
+        <h2 style={{ fontSize: 24, marginBottom: 12 }}>{t("What K_21 Assist Does", "O que o K_21 Assist faz")}</h2>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 12 }}>
+          {[
+            { title: t("AI Sales Assistant", "Assistente de Vendas IA"), desc: t("Capture, qualify & convert leads 24/7", "Captura, qualifica e converte leads 24/7") },
+            { title: t("Content Engine", "Gerador de Conteúdo"), desc: t("Automate posts, ads, emails and landing text", "Automatize posts, anúncios, emails e textos") },
+            { title: t("Multilingual Support", "Suporte Multilingue"), desc: t("English, PT, ES — global-ready", "Inglês, PT, ES — pronto para o mundo") },
+            { title: t("No-Code Deployment", "Deploy sem Código"), desc: t("Live site in minutes — Vercel powered", "Site no ar em minutos — rodando na Vercel") }
+          ].map((f, i) => (
+            <div key={i} style={{ padding: 18, borderRadius: 12, background: "#07102a", border: "1px solid rgba(255,255,255,0.03)" }}>
+              <div style={{ fontWeight: 800, fontSize: 16, marginBottom: 8 }}>{f.title}</div>
+              <div style={{ color: "rgba(255,255,255,0.7)" }}>{f.desc}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section style={{ maxWidth: 1100, margin: "26px auto", padding: "0 20px" }}>
+        <h2 style={{ fontSize: 24, marginBottom: 12 }}>{t("Pricing (USD)", "Preços (USD)")}</h2>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 12 }}>
+          <div style={{ padding: 18, borderRadius: 12, background: "#07102a", border: "1px solid rgba(255,255,255,0.03)" }}>
+            <div style={{ fontSize: 18, fontWeight: 800 }}>Free</div>
+            <div style={{ color: "rgba(255,255,255,0.7)", marginTop: 8 }}>Basic AI assistant, 100 messages/month</div>
+            <div style={{ marginTop: 12, fontWeight: 800 }}>$0</div>
+          </div>
+
+          <div style={{ padding: 18, borderRadius: 12, background: "linear-gradient(180deg,#07102a,#051025)", border: "1px solid rgba(255,255,255,0.04)" }}>
+            <div style={{ fontSize: 18, fontWeight: 800 }}>Growth</div>
+            <div style={{ color: "rgba(255,255,255,0.8)", marginTop: 8 }}>Full assistant, content generation, analytics</div>
+            <div style={{ marginTop: 12, fontWeight: 800 }}>$49 / month</div>
+            <a href={STRIPE_CHECKOUT_URL} style={{ display: "inline-block", marginTop: 12, padding: "8px 12px", background: "#7c3aed", color: "#fff", borderRadius: 8, textDecoration: "none", fontWeight: 800 }}>
+              {t("Choose Plan", "Escolher")}
+            </a>
+          </div>
+
+          <div style={{ padding: 18, borderRadius: 12, background: "#07102a", border: "1px solid rgba(255,255,255,0.03)" }}>
+            <div style={{ fontSize: 18, fontWeight: 800 }}>Agency</div>
+            <div style={{ color: "rgba(255,255,255,0.7)", marginTop: 8 }}>Multi-seat, priority support, white-label</div>
+            <div style={{ marginTop: 12, fontWeight: 800 }}>$199 / month</div>
+            <a href={waLink} style={{ display: "inline-block", marginTop: 12, padding: "8px 12px", background: "transparent", border: "1px solid rgba(255,255,255,0.08)", color: "#fff", borderRadius: 8, textDecoration: "none", fontWeight: 800 }}>
+              {t("Talk Sales", "Falar com Vendas")}
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section style={{ maxWidth: 900, margin: "28px auto", padding: "0 20px", textAlign: "left" }}>
+        <h2 style={{ fontSize: 24 }}>{t("How it works", "Como funciona")}</h2>
+        <ol style={{ color: "rgba(255,255,255,0.8)", marginTop: 12, lineHeight: 1.8 }}>
+          <li>{t("Sign up & connect your channels (website, WhatsApp, social)", "Registre-se e conecte canais (site, WhatsApp, redes)")}</li>
+          <li>{t("Pick a template and customize your assistant", "Escolha um template e personalize o assistente")}</li>
+          <li>{t("Start capturing leads and scaling revenue", "Comece a capturar leads e escalar receita")}</li>
+        </ol>
+      </section>
+
+      {/* FAQ small */}
+      <section style={{ maxWidth: 900, margin: "18px auto 80px", padding: "0 20px" }}>
+        <h3 style={{ fontSize: 20 }}>{t("FAQ", "Perguntas Frequentes")}</h3>
+        <div style={{ marginTop: 8, color: "rgba(255,255,255,0.8)" }}>
+          <div style={{ marginBottom: 8 }}>
+            <strong>{t("Is it free?", "É grátis?")} </strong> {t("Yes — free plan available", "Sim — existe plano gratuito")}
+          </div>
+          <div>
+            <strong>{t("Do I need a credit card?", "Preciso de cartão?")} </strong> {t("No — start without a card", "Não — comece sem cartão")}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={{ borderTop: "1px solid rgba(255,255,255,0.03)", padding: "24px 20px", textAlign: "center", color: "rgba(255,255,255,0.6)" }}>
+        <div style={{ marginBottom: 8 }}>© {new Date().getFullYear()} K_21 Assist</div>
+        <div style={{ fontSize: 13 }}>{t("Built for creators & agencies • Sell in USD", "Criado para criadores e agências • Venda em USD")}</div>
+      </footer>
     </div>
   );
-}
-            marginRight: "10px"
-          }}
-        >
-          Start Free
-        </a>
-
-        <a
-          href="#features"
-          style={{
-            padding: "14px 30px",
-            backgroundColor: "#1f1f1f",
-            borderRadius: "8px",
-            color: "white",
-            textDecoration: "none",
-            fontWeight: "bold",
-            border: "1px solid #7c3aed"
-          }}
-        >
-          Ver Funcionalidades
-        </a>
-      </div>
-
-      {/* FEATURES SECTION */}
-      <h2 id="features" style={{ fontSize: "26px", marginBottom: "20px" }}>
-        ⚡ Tudo o que você precisa para lucrar / Everything you need to scale
-      </h2>
-
-      <ul
-        style={{
-          listStyle: "none",
-          padding: 0,
-          maxWidth: "700px",
-          margin: "0 auto",
-          textAlign: "left",
-          fontSize: "18px",
-          lineHeight: "1.6"
-        }}
-      >
-        <li>• IA que atende clientes automaticamente (24/7)</li>
-        <li>• AI that captures and qualifies leads for you</li>
-        <li>• Criação automática de posts, scripts e textos</li>
-        <li>• Automatic content, ads, emails and scripts generator</li>
-        <li>• Responde em qualquer idioma</li>
-        <li>• Multilingual support (English, PT, ES and more)</li>
-        <li>• Faz vendas, suporte e geração de conteúdo</li>
-        <li>• Full automation for sales + support + content</li>
-      </ul>
-
-      {/* FINAL CTA */}
-      <h2 style={{ marginTop: "60px", fontSize: "28px" }}>
-        Pronta para ganhar em dólar? / Ready to scale in USD?
-      </h2>
-
-      <a
-        id="start"
-        href="#"
-        style={{
-          padding: "16px 40px",
-          backgroundColor: "#7c3aed",
-          borderRadius: "10px",
-          color: "white",
-          textDecoration: "none",
-          fontSize: "20px",
-          fontWeight: "bold",
-          display: "inline-block",
-          marginTop: "20px"
-        }}
-      >
-        Começar Agora / Start Now
-      </a>
-    </div>
-  );
-        }
+          }
+                  
