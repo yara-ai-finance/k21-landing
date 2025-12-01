@@ -2,23 +2,16 @@ import "./App.css";
 import React, { useState } from "react";
 
 /**
- * BEFORE YOU SAVE:
- * - Replace WA_NUMBER with your WhatsApp number in international format (no +, e.g. 15551234567)
- * - Replace STRIPE_CHECKOUT_URL with your Stripe checkout / product url when ready
+ * FINAL LAYOUT — NO WHATSAPP
+ * - Button "Start Free / Começar Grátis" points to STRIPE_CHECKOUT_URL
+ * - Replace STRIPE_CHECKOUT_URL with your real Stripe checkout URL when ready
  */
 
-const WA_NUMBER = "YOUR_PHONE_NUMBER_HERE"; // example: 15551234567
-const STRIPE_CHECKOUT_URL = "https://buy.stripe.com/PLACEHOLDER"; // replace later
+const STRIPE_CHECKOUT_URL = "https://buy.stripe.com/PLACEHOLDER";
 
 export default function App() {
   const [lang, setLang] = useState<"en" | "pt">("en");
   const t = (en: string, pt: string) => (lang === "en" ? en : pt);
-
-  const waLink = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
-    lang === "en"
-      ? "Hi, I want to start with K_21 Assist. Tell me more."
-      : "Olá, quero começar com K_21 Assist. Quero mais informações."
-  )}`;
 
   return (
     <div style={{ fontFamily: "Inter, Arial, sans-serif", background: "#0b1020", color: "#fff", minHeight: "100vh" }}>
@@ -43,6 +36,7 @@ export default function App() {
               cursor: "pointer",
               fontWeight: 700
             }}
+            aria-label="toggle language"
           >
             {lang === "en" ? "PT" : "EN"}
           </button>
@@ -80,12 +74,13 @@ export default function App() {
                   textDecoration: "none",
                   boxShadow: "0 8px 30px rgba(107,0,255,0.16)"
                 }}
+                aria-label={t("Start Free", "Começar Grátis")}
               >
                 {t("Start Free", "Começar Grátis")}
               </a>
 
               <a
-                href={waLink}
+                href="#pricing"
                 style={{
                   background: "transparent",
                   padding: "12px 20px",
@@ -95,9 +90,8 @@ export default function App() {
                   border: "1px solid rgba(255,255,255,0.08)",
                   fontWeight: 700
                 }}
-                rel="noreferrer"
               >
-                {t("Talk to an Expert (WhatsApp)", "Falar com um Especialista (WhatsApp)")}
+                {t("See Plans", "Ver Planos")}
               </a>
             </div>
 
@@ -128,7 +122,7 @@ export default function App() {
       </section>
 
       {/* Pricing */}
-      <section style={{ maxWidth: 1100, margin: "26px auto", padding: "0 20px" }}>
+      <section id="pricing" style={{ maxWidth: 1100, margin: "26px auto", padding: "0 20px" }}>
         <h2 style={{ fontSize: 24, marginBottom: 12 }}>{t("Pricing (USD)", "Preços (USD)")}</h2>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 12 }}>
@@ -151,8 +145,8 @@ export default function App() {
             <div style={{ fontSize: 18, fontWeight: 800 }}>Agency</div>
             <div style={{ color: "rgba(255,255,255,0.7)", marginTop: 8 }}>Multi-seat, priority support, white-label</div>
             <div style={{ marginTop: 12, fontWeight: 800 }}>$199 / month</div>
-            <a href={waLink} style={{ display: "inline-block", marginTop: 12, padding: "8px 12px", background: "transparent", border: "1px solid rgba(255,255,255,0.08)", color: "#fff", borderRadius: 8, textDecoration: "none", fontWeight: 800 }}>
-              {t("Talk Sales", "Falar com Vendas")}
+            <a href={STRIPE_CHECKOUT_URL} style={{ display: "inline-block", marginTop: 12, padding: "8px 12px", background: "transparent", border: "1px solid rgba(255,255,255,0.08)", color: "#fff", borderRadius: 8, textDecoration: "none", fontWeight: 800 }}>
+              {t("Contact Sales", "Falar com Vendas")}
             </a>
           </div>
         </div>
@@ -162,13 +156,13 @@ export default function App() {
       <section style={{ maxWidth: 900, margin: "28px auto", padding: "0 20px", textAlign: "left" }}>
         <h2 style={{ fontSize: 24 }}>{t("How it works", "Como funciona")}</h2>
         <ol style={{ color: "rgba(255,255,255,0.8)", marginTop: 12, lineHeight: 1.8 }}>
-          <li>{t("Sign up & connect your channels (website, WhatsApp, social)", "Registre-se e conecte canais (site, WhatsApp, redes)")}</li>
+          <li>{t("Sign up & connect your channels (website, social)", "Registre-se e conecte seus canais (site, redes)")}</li>
           <li>{t("Pick a template and customize your assistant", "Escolha um template e personalize o assistente")}</li>
           <li>{t("Start capturing leads and scaling revenue", "Comece a capturar leads e escalar receita")}</li>
         </ol>
       </section>
 
-      {/* FAQ small */}
+      {/* Small FAQ */}
       <section style={{ maxWidth: 900, margin: "18px auto 80px", padding: "0 20px" }}>
         <h3 style={{ fontSize: 20 }}>{t("FAQ", "Perguntas Frequentes")}</h3>
         <div style={{ marginTop: 8, color: "rgba(255,255,255,0.8)" }}>
@@ -188,5 +182,5 @@ export default function App() {
       </footer>
     </div>
   );
-          }
-                  
+                       }
+                    
